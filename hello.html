@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #chatbox {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            overflow-y: auto;
+            margin: auto;
+            padding: 10px;
+        }
+        #userInput {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Simple AI Chatbot</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("userInput").value;
+            var chatbox = document.getElementById("chatbox");
+
+            if (userInput.trim() !== "") {
+                var userMessage = "<p><strong>You:</strong> " + userInput + "</p>";
+                chatbox.innerHTML += userMessage;
+
+                // Simple AI Response
+                var botResponse = getBotResponse(userInput);
+                var botMessage = "<p><strong>Bot:</strong> " + botResponse + "</p>";
+                chatbox.innerHTML += botMessage;
+
+                document.getElementById("userInput").value = "";
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }
+        }
+
+        function getBotResponse(input) {
+            var responses = {
+                "hello": "Hi there! How can I help you?",
+                "how are you": "I'm just a bot, but I'm doing great!",
+                "bye": "Goodbye! Have a great day!",
+                "name": "I'm a simple AI chatbot.",
+                "who made you": "I was created by Rohit Chaudhary."
+            };
+
+            input = input.toLowerCase();
+            return responses[input] || "Sorry, I don't understand that.";
+        }
+    </script>
+</body>
+</html>
